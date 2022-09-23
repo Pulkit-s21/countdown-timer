@@ -7,7 +7,8 @@ setInterval(() => {
     const now = new Date().getTime();
   
     const diff = endDate - now;
-  
+
+    // these are the values of how many of milliseconds make one of them like 10000 ms = 1s and so on cz timestamp is in milliseconds
     const seconds = 1000;
     const minutes = seconds * 60;
     const hours = minutes * 60;
@@ -15,8 +16,30 @@ setInterval(() => {
   
     let timeDays = Math.floor(diff / days);
 
+    let finalDays = 0;
+    setInterval(() => {
+      document.getElementById("days").innerHTML = finalDays;
+
+      if(finalDays === timeDays){
+        clearInterval();
+      }else{
+        finalDays++;
+      }
+    }, 100);
+
     let timeHours = Math.floor((diff % days) / hours);
     timeHours = timeHours < 10 ? "0" + timeHours : timeHours;
+
+    let finalHours = 0;
+    setInterval(() => {
+      document.getElementById("hrs").innerHTML = finalHours;
+
+      if(finalHours === timeHours){
+        clearInterval();
+      }else{
+        finalHours++;
+      }
+    }, 100);
   
     let timeMinutes = Math.floor((diff % hours) / minutes);
     timeMinutes = timeMinutes < 10 ? "0" + timeMinutes : timeMinutes;
@@ -24,8 +47,6 @@ setInterval(() => {
     let timeSeconds = Math.floor((diff % minutes) / seconds);
     timeSeconds = timeSeconds < 10 ? "0" + timeSeconds : timeSeconds;
   
-    document.getElementById("days").innerHTML = timeDays;
-    document.getElementById("hrs").innerHTML = timeHours;
     document.getElementById("mins").innerHTML = timeMinutes;
     document.getElementById("secs").innerHTML = timeSeconds;
   }
