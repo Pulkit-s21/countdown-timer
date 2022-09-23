@@ -8,7 +8,7 @@ setInterval(() => {
   
     const diff = endDate - now;
 
-    if(endDate - now < 0){
+    if(diff < 0){
       alert("The date has already passed !");
     }
 
